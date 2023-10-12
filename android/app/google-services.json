@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "777136866500",
+    "project_id": "kashmir-footprints",
+    "storage_bucket": "kashmir-footprints.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:777136866500:android:f115b751c89ef6124a3591",
+        "android_client_info": {
+          "package_name": "com.example.test"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzsAUvJ0Cs1aqnvCUPlN1k4ZthqT_D_bU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
