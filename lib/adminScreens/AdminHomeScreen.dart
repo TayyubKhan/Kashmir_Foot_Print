@@ -39,70 +39,76 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
   Widget build(BuildContext context) {
     double width = MediaQuery.sizeOf(context).width;
     double height = MediaQuery.sizeOf(context).height;
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        title: const Text(
-          'Admin',
-          style: TextStyle(color: back),
-        ),
-        centerTitle: true,
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 10.0),
-            child: InkWell(
-              onTap: () {
-                auth.signOut();
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => SplashScreen()));
-              },
-              child: const Icon(
-                Icons.exit_to_app,
-                color: back,
-              ),
-            ),
-          )
-        ],
-      ),
-      body: Column(
-        children: [
-          Expanded(
-            child: GridView.builder(
-                itemCount: 6,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  mainAxisSpacing: 16,
-                  crossAxisSpacing: 4,
+    return WillPopScope(
+      onWillPop: () async {
+        // Return true to allow back navigation, or false to disable it
+        return false;
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          title: const Text(
+            'Admin',
+            style: TextStyle(color: back),
+          ),
+          centerTitle: true,
+          actions: [
+            Padding(
+              padding: const EdgeInsets.only(right: 10.0),
+              child: InkWell(
+                onTap: () {
+                  auth.signOut();
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => SplashScreen()));
+                },
+                child: const Icon(
+                  Icons.exit_to_app,
+                  color: back,
                 ),
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => screen[index]));
-                      },
-                      child: Container(
-                          width: width * 0.3,
-                          height: height * 0.3,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(35),
-                              border: Border.all(color: back)),
-                          child: Center(
-                            child: Text(
-                              screenName[index],
-                              textAlign: TextAlign.center,
-                              style: const TextStyle(fontSize: 31),
-                            ),
-                          )),
-                    ),
-                  );
-                }),
-          )
-        ],
+              ),
+            )
+          ],
+        ),
+        body: Column(
+          children: [
+            Expanded(
+              child: GridView.builder(
+                  itemCount: 6,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 16,
+                    crossAxisSpacing: 4,
+                  ),
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => screen[index]));
+                        },
+                        child: Container(
+                            width: width * 0.3,
+                            height: height * 0.3,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(35),
+                                border: Border.all(color: back)),
+                            child: Center(
+                              child: Text(
+                                screenName[index],
+                                textAlign: TextAlign.center,
+                                style: const TextStyle(fontSize: 31),
+                              ),
+                            )),
+                      ),
+                    );
+                  }),
+            )
+          ],
+        ),
       ),
     );
   }

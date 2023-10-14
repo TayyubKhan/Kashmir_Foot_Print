@@ -36,7 +36,22 @@ class _SignInScreenState extends State<SignInScreen> {
     double height = MediaQuery.sizeOf(context).height;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Sign Up'),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leading: InkWell(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: const Icon(
+            Icons.arrow_back,
+            color: back,
+          ),
+        ),
+        title: const Text(
+          'Sign in Screen',
+          style: TextStyle(color: back),
+        ),
+        centerTitle: true,
       ),
       body: Stack(
         children: [

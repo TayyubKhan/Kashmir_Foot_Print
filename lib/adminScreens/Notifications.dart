@@ -211,7 +211,7 @@ class _AdminNotificationsState extends State<AdminNotifications> {
                     List<String> url = [];
                     int id = DateTime.now().millisecondsSinceEpoch;
                     fs.Reference ref =
-                        fs.FirebaseStorage.instance.ref('/notification/');
+                        fs.FirebaseStorage.instance.ref('/notification/$id/');
                     fs.UploadTask upload = ref.putFile(_image[0]!.absolute);
                     await Future.value(upload).then((value) async {
                       var newUrl = await ref.getDownloadURL();
