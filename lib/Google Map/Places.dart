@@ -6,13 +6,13 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'package:uuid/uuid.dart';
 
-Future<dynamic> getSuggestions() async {
-  String input = 'Peer Chinasi Muzaffarabad,Azad Kashmir';
+Future<dynamic> getSuggestions(String text) async {
+  String input = text;
   var uuid = const Uuid().v4();
   List<dynamic> places = [];
   String sessionToken = '12345';
 
-  String kPlacesApiKey = 'AIzaSyC4QfSfNEEmdiT9Jrh5xjmqczEN8CAg4Os';
+  String kPlacesApiKey = 'AIzaSyBrDLtzgJD3h1MibAYXbuJPBOIQrq3rfKY';
   String baseURL =
       "https://maps.googleapis.com/maps/api/place/autocomplete/json";
   String request =

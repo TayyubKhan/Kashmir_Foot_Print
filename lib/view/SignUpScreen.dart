@@ -1,3 +1,5 @@
+// ignore_for_file: use_key_in_widget_constructors, library_private_types_in_public_api
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +8,7 @@ import 'package:myapp/Utilis/colors.dart';
 
 import '../FirebaseNotification.dart';
 import '../Utilis/Utilis.dart';
+import 'SignInScreen.dart';
 
 class SignUpPage extends StatefulWidget {
   @override
@@ -37,6 +40,7 @@ class _SignUpPageState extends State<SignUpPage> {
     double width = MediaQuery.sizeOf(context).width;
     double height = MediaQuery.sizeOf(context).height;
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -268,7 +272,7 @@ class _SignUpPageState extends State<SignUpPage> {
     });
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
-      auth
+      await auth
           .createUserWithEmailAndPassword(
               email: _emailController.text.toString(),
               password: _passwordController.text.toString())
@@ -276,8 +280,7 @@ class _SignUpPageState extends State<SignUpPage> {
         setState(() {
           loading = false;
         });
-        // Navigator.push(
-        //     context, MaterialPageRoute(builder: (context) => SignInScreen()));
+
         notificationServices.getDeviceToken().then((valuee) {
           fireStore.doc(value.user!.uid.toString()).set({
             'userId': value.user!.uid.toString(),
@@ -285,6 +288,8 @@ class _SignUpPageState extends State<SignUpPage> {
             'fcm_token': valuee
           });
         });
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => SignInScreen()));
       }).onError((error, stackTrace) {
         setState(() {
           loading = false;

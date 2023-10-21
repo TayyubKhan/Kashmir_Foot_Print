@@ -5,9 +5,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:myapp/Components/Button.dart';
 import 'package:myapp/Utilis/colors.dart';
-import 'package:myapp/adminScreens/AdminHomeScreen.dart';
 
 import '../Utilis/Utilis.dart';
+import '../adminScreens/AdminHomeScreen.dart';
 import 'HomeScreen.dart';
 
 class SignInScreen extends StatefulWidget {
@@ -35,6 +35,7 @@ class _SignInScreenState extends State<SignInScreen> {
     double width = MediaQuery.sizeOf(context).width;
     double height = MediaQuery.sizeOf(context).height;
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -174,7 +175,7 @@ class _SignInScreenState extends State<SignInScreen> {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
 
-      auth
+      await auth
           .signInWithEmailAndPassword(
               email: _emailController.text.toString(),
               password: _passwordController.text.toString())
@@ -209,7 +210,7 @@ class _SignInScreenState extends State<SignInScreen> {
       FocusScope.of(context).requestFocus(_emailFocus);
       setState(() {
         loading = false;
-        _formKey.currentState!.reset();
+        // _formKey.currentState!.reset();
       });
       // Show a success message or navigate to the next screen
     }
